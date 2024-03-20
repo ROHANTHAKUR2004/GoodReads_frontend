@@ -1,10 +1,14 @@
+import Home from "Pages/Home";
 
 
 function App() {
   
 
   return (
-    <>Goodreads</>
+    <>
+      <Home />
+      
+      </>
   );
 }
 
