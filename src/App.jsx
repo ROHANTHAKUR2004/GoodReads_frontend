@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>Goodreads</>
-  )
+  );
 }
 
-export default App
+export default App;
