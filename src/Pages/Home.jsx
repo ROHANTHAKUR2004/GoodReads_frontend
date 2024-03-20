@@ -1,11 +1,12 @@
 import logo from 'Assets/images/book.png';
+import { Link } from 'react-router-dom';
 
 export default function Home(){
     return(
     
             <div className="flex flex-col items-center justify-center gap-20 h-[100vh]">
 
-                <div className='h-40 w-40 '>
+                <div className='h-48 w-48'>
                     <img
                        className='w-full h-full rounded-full'
                        alt="logo"
@@ -20,8 +21,12 @@ export default function Home(){
                        </h1>
                     </div>
                     <div>
-                        <button className='btn btn-primary rounded-md px-5 py-2 text-xl '>Register</button>
-                        <button className='btn btn-warning mx-3 rounded-md px-5 py-2 text-xl '>Login</button>
+                        <button className='btn btn-primary rounded-md px-5 py-2 text-xl '>
+                            <Link to="/signup">Register</Link>
+                            </button>
+                        <button className='btn btn-warning mx-3 rounded-md px-5 py-2 text-xl '>
+                        <Link to="/login">Login</Link>
+                        </button>
                     </div>
 
                 </div>
