@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import Layout from "Layouts/Layout";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signin } from "Redux/Slices/AuthSlice";
 
@@ -7,6 +8,7 @@ export default function Signin(){
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const stat = useSelector((state) => state.auth);
 
     const [signindetails, setsignindetails]= useState({
         email: '',
@@ -28,10 +30,17 @@ async function onformsubmit(e){
     console.log(signindetails);
      const response =  await dispatch(signin(signindetails));
      if(response?.payload?.data){
-        navigate("/");
+        navigate("/dashborad");
      }
     resetform();
 }
+
+
+useEffect(()=>{
+  if(stat.isloggedIn){
+    navigate("/dashborad");
+  }
+},[]);
 
 function resetform(){
     setsignindetails({
@@ -42,6 +51,7 @@ function resetform(){
 
 
     return(
+      <Layout>
         <div className="h-[100vh] flex flex-col items-center justify-center" >
 
         <div>
@@ -90,6 +100,7 @@ function resetform(){
                   </form>
                 </div>
 
-        </div>                              
+        </div>   
+        </Layout>                           
     );
 }

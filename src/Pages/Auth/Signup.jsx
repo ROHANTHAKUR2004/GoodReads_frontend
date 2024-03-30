@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import Layout from "Layouts/Layout";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signup } from "Redux/Slices/AuthSlice";
 
@@ -7,6 +8,7 @@ export default function Signup(){
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const stat = useSelector((state) => state.auth);
    
   const [signupdetails, setsignupdetails]= useState({
     email: '',
@@ -42,8 +44,14 @@ if(response?.payload?.data){
 resetform();
 }
   
+useEffect(()=>{
+  if(stat.isloggedIn){
+    navigate("/dashborad");
+  }
+},[]);
   
   return(
+    <Layout>
         <div className="h-[100vh] flex flex-col items-center justify-center" >
 
         <div>
@@ -103,6 +111,7 @@ resetform();
                   </form>
                 </div>
 
-        </div>                              
+        </div>  
+        </Layout>                            
     );
 }
