@@ -1,7 +1,49 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "Redux/Slices/AuthSlice";
 
 export default function Signup(){
-    return(
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+   
+  const [signupdetails, setsignupdetails]= useState({
+    email: '',
+    password:'',
+    username: '',
+});
+
+
+function handleformchange(e){
+    const {name, value} = e.target;
+    setsignupdetails({
+        ...signupdetails,
+        [name]: value
+    });
+
+}
+
+function resetform(){
+  setsignupdetails({
+    email: '',
+    password:'',
+    username: '',
+  });
+}
+
+async function onformsubmit(e){
+e.preventDefault();
+//console.log(signupdetails);
+const response = await dispatch(signup(signupdetails));
+if(response?.payload?.data){
+  navigate("/signin");
+}
+resetform();
+}
+  
+  
+  return(
         <div className="h-[100vh] flex flex-col items-center justify-center" >
 
         <div>
@@ -20,29 +62,38 @@ export default function Signup(){
                 </div>  
 
                 <div className="w-full">
-                  <form className="flex flex-col justify-center items-center w-3/4 mx-auto"> 
-                  <div className="my-5 w-1/3">
+                  <form onSubmit={onformsubmit}  className="flex flex-col justify-center items-center w-3/4 mx-auto" autoComplete="off"> 
+                  <div className="my-5 w-1/3 text-black">
                     <input 
                     autoComplete="off"
                        type="text"
                        placeholder="Username..."
                        className="px-8 py-3 w-full bg-white"
+                       name="username"
+                       value={signupdetails.username}
+                       onChange={handleformchange}
                      />
                      </div>
-                     <div className="my-5 w-1/3">
+                     <div className="my-5 w-1/3 text-black">
                     <input 
                     autoComplete="off"
                        type="email"
                        placeholder="Email..."
                        className="px-8 py-3 w-full bg-white"
+                       name="email"
+                       value={signupdetails.email}
+                       onChange={handleformchange}
                      />
                      </div>
-                     <div className="my-5 w-1/3">
+                     <div className="my-5 w-1/3 text-black">
                     <input 
                       autoComplete="off"
                        type="password"
                        placeholder="Password..."
                        className="px-8 py-3 w-full bg-white"
+                       name="password"
+                       value={signupdetails.password}
+                       onChange={handleformchange}
                      />
                   </div>
                   <div className="my-5 w-1/3">
