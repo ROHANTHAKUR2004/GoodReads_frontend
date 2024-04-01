@@ -26,7 +26,7 @@ const initialState = {
         return await response;
     } catch (error) {
         console.log(error);
-        toast.error("Cann't signup,something went wrong")
+        toast.error("Cann't signup,something went wrong");
     }
  });
 
@@ -47,7 +47,7 @@ const initialState = {
             toast.error(error?.response?.data?.err);
         }
         else{
-        toast.error("Cann't signIn,something went wrong")
+        toast.error("Cann't signIn,something went wrong");
         }
     }
  });
