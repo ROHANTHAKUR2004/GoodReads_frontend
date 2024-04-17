@@ -13,16 +13,13 @@ export default function Dasboard(){
 
  async function loadbook(){
   if(bookstate.bookList.length == 0 ){
-    const response  =  await dispatch(getallbooks());
-    console.log(response);
+    await dispatch(getallbooks());
   }
-
  }
 
 
   useEffect(()=>{
-
-   loadbook();
+       loadbook();
   },[]);
     return(
           <Layout>

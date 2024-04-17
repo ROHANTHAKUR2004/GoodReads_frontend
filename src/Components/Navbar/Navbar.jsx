@@ -19,7 +19,7 @@ function onlogout(){
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
-                { authstate.isloggedIn && <li><Link>Shelfs</Link></li>}
+                { authstate.isloggedIn && <li><Link to="/shelf">Shelfs</Link></li>}
                 { authstate.isloggedIn && <li><Link>{authstate.username}</Link></li>}
                   <li>
                     <details>

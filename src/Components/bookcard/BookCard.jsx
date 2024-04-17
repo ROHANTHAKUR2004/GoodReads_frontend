@@ -24,7 +24,7 @@ export default function BookCard({data}){
                     </div>
                 </div> 
                 <div >
-                   {data.description.slice(0,120) + "..."}
+                   {data.description.slice(0,100) + "..."}
 
                 </div>
                 </div>
